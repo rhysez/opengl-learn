@@ -30,20 +30,15 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 float vertices[] = {
-    // Triangle 1
-     0.75f, 0.5f, 0.0f, // top
-     0.75f,  -0.5f, 0.0f, // right
-     -0.75f, -0.5f, 0.0f,  // left
-  
-     // Triangle 2
-     -0.75f, 0.5f, 0.0f, // top
-     0.75f, 0.5f, 0.0f, // right
-     -0.75f, -0.5f, 0.0f // left
+    // Triangle 
+     0.0f, 0.5f, 0.0f, // top
+     -0.5f,  -0.5f, 0.0f, // right
+     0.5f, -0.5f, 0.0f,  // left
 };
 
+// The order in which we draw vertices.
 unsigned int indices[] = { 
     0, 1, 2,
-    3, 4, 5
 };
 
 int main()
