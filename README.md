@@ -1,1 +1,1 @@
-Just mucking around with OpenGL. This repo might become something cool eventually!
+This repo is a representation of my progress with learnopengl.com.
