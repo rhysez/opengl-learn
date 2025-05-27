@@ -22,6 +22,7 @@ const char* fragmentShaderSource = "#version 330 core\n"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
+void updateColorUniform(unsigned int program);
 GLFWwindow* initWindow();
 
 // settings
@@ -116,18 +117,15 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glUseProgram(shaderProgram);
+
         // Get the amount of time (in seconds) the program has been running for.
         // Calculate a colour based on this time.
         // Get the newColor global uniform variable by it's name.
-        // Activate our shader program.
         // Assign a value to newColor using the colour generated from greenValue.
         // For each render cycle, a new colour will be generated and assigned to newColor.
         // The shader program will use this new colour in the fragment shader every frame.
-        float timeValue = glfwGetTime();
-        float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
-        int vertexColorLocation = glGetUniformLocation(shaderProgram, "newColor");
-        glUseProgram(shaderProgram);
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+        updateColorUniform(shaderProgram);
 
         // Bind a new VAO instance for rendering.
         glBindVertexArray(VAO);
@@ -159,6 +157,13 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
+}
+
+void updateColorUniform(unsigned int program) {
+    float timeValue = glfwGetTime();
+    float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
+    int vertexColorLocation = glGetUniformLocation(program, "newColor");
+    glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 }
 
 GLFWwindow* initWindow() {
