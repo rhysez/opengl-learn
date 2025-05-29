@@ -3,33 +3,13 @@
 #include "shader.h"
 #include <iostream>
 
-const char* vertexShaderSource = "#version 330 core\n"
-"layout (location = 0) in vec3 aPos;\n"
-"layout (location = 1) in vec3 aColor;\n"
-"out vec3 newColor;\n"
-"void main()\n"
-"{\n"
-"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"   newColor = aColor;\n"
-"}\0";
-
-const char* fragmentShaderSource = "#version 330 core\n"
-"out vec4 FragColor;\n"
-"in vec3 newColor;\n"
-"void main()\n"
-"{\n"
-"   FragColor = vec4(newColor, 1.0);\n"
-"}\0";
-
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 void updateColorUniform(unsigned int program);
 GLFWwindow* initWindow();
 
-// settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-
 
 int main()
 {
@@ -51,7 +31,8 @@ int main()
 
     unsigned int VBO, VAO, EBO;
 
-    glGenBuffers(1, &VBO); // Assign an ID of 1 to the VBO.
+    // Assign an ID of 1 to the VBO.
+    glGenBuffers(1, &VBO); 
 
     // Vertex Array Object set up.
     glGenVertexArrays(1, &VAO);
